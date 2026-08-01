@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { Check, Copy, ExternalLink, FileJson, X } from 'lucide-react';
+import { Check, Copy, ExternalLink, FileJson, Film, X } from 'lucide-react';
 
 const CACHE_KEY = 'toolb_step1_json_talking';
 const GUIDE_URL = 'https://chatgpt.com/g/g-6a6ddb87eca88191bea109d550a06b8a-aiyeongsanggicodajigi';
+const FLOW_URL = 'https://labs.google/fx/tools/flow';
 
 function humanize(key) {
   return String(key).replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
@@ -225,17 +226,17 @@ export default function Step1MobileClient() {
         .tbm-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .tbm-actionrow {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 6px;
           width: 100%;
         }
         .tbm-actionrow .tbm-btn {
           flex-direction: row;
-          gap: 6px;
+          gap: 4px;
           width: 100%;
           min-height: 76px;
-          padding: 10px 4px;
-          font-size: 18px;
+          padding: 10px 2px;
+          font-size: 15px;
           font-weight: 800;
           border-radius: 12px;
           text-align: center;
@@ -243,16 +244,16 @@ export default function Step1MobileClient() {
           white-space: normal;
         }
         .tbm-actionrow .tbm-btn svg {
-          width: 21px; height: 21px;
+          width: 18px; height: 18px;
           flex-shrink: 0;
         }
         @media (max-width: 380px) {
           .tbm-actionrow .tbm-btn {
-            font-size: 16px;
-            padding: 10px 3px;
+            font-size: 13px;
+            padding: 10px 2px;
           }
           .tbm-actionrow .tbm-btn svg {
-            width: 19px; height: 19px;
+            width: 16px; height: 16px;
           }
         }
         .tbm-btn-outline {
@@ -468,14 +469,14 @@ export default function Step1MobileClient() {
         <div className="tbm-wrap tbm-actionrow">
           <a href={GUIDE_URL} target="_blank" rel="noreferrer" className="tbm-btn tbm-btn-outline">
             <ExternalLink className="w-5 h-5" />
-            지침 열기
+            지침열기
           </a>
           <button
             onClick={() => { setUploadOpen(true); setPasteError(''); setPasteInput(''); }}
             className="tbm-btn tbm-btn-primary"
           >
             <FileJson className="w-5 h-5" />
-            JSON 업로드
+            업로드
           </button>
           <button
             onClick={copyPrompt}
@@ -483,8 +484,12 @@ export default function Step1MobileClient() {
             className={`tbm-btn ${copied ? 'tbm-btn-dark' : 'tbm-btn-primary'}`}
           >
             {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-            {copied ? '복사했어요!' : '프롬프트 복사'}
+            {copied ? '복사완료' : '복사'}
           </button>
+          <a href={FLOW_URL} target="_blank" rel="noreferrer" className="tbm-btn tbm-btn-dark">
+            <Film className="w-5 h-5" />
+            영상제작
+          </a>
         </div>
         {copied && (
           <p className="tbm-copied-banner tbm-wrap" style={{ marginTop: 10 }}>이제 대사 수정을 마친 뒤 붙여넣을 곳에 붙여넣으세요.</p>
