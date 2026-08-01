@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { Check, Copy, ExternalLink, FileJson, Film, X } from 'lucide-react';
+import { ArrowRight, Check, Copy, ExternalLink, FileJson, Film, Sparkles, X } from 'lucide-react';
 
 const CACHE_KEY = 'toolb_step1_json_talking';
 const GUIDE_URL = 'https://chatgpt.com/g/g-6a6ddb87eca88191bea109d550a06b8a-aiyeongsanggicodajigi';
@@ -156,46 +156,97 @@ export default function Step1MobileClient() {
 
   return (
     <div className="tbm-page auth-scroll">
-      <h1 className="tbm-title tbm-wrap">AI 영상기초 다지기</h1>
+      <header className="tbm-hero">
+        <div className="tbm-wrap">
+          <div className="tbm-brand" aria-label="한컷 AI">
+            <span className="tbm-logo" aria-hidden="true">
+              <Film />
+              <Sparkles />
+            </span>
+            <span>한컷 AI</span>
+          </div>
 
-      {/* Sticky action bar */}
+          <div className="tbm-hero-card">
+            <div className="tbm-hero-copy">
+              <span className="tbm-eyebrow">AI 영상 만들기 · 첫걸음</span>
+              <h1 className="tbm-title">대사만 고치면<br />영상 준비 끝!</h1>
+              <p className="tbm-subtitle">어려운 기능 없이, 아래 순서대로 천천히 따라 해보세요.</p>
+            </div>
+            <img
+              className="tbm-hero-image"
+              src="/images/ai-video-guide-hero.webp"
+              alt="태블릿으로 영상을 만드는 어르신 일러스트"
+            />
+          </div>
+        </div>
+      </header>
+
       <div className="tbm-actionbar">
-        <div className="tbm-wrap tbm-actionrow">
+        <div className="tbm-wrap">
+          <div className="tbm-step-heading">
+            <div>
+              <span className="tbm-kicker">쉬운 4단계</span>
+              <h2>어디서부터 시작할까요?</h2>
+            </div>
+            <span className="tbm-step-time">약 5분</span>
+          </div>
+          <div className="tbm-actionrow">
           <a href={GUIDE_URL} target="_blank" rel="noreferrer" className="tbm-btn tbm-btn-outline">
-            <ExternalLink className="w-5 h-5" />
-            지침열기
+            <span className="tbm-step-number">1</span>
+            <span className="tbm-btn-copy"><small>먼저</small>지침 열기</span>
+            <ExternalLink className="tbm-action-icon" />
           </a>
           <button
             onClick={() => { setUploadOpen(true); setPasteError(''); setPasteInput(''); }}
             className="tbm-btn tbm-btn-primary"
           >
-            <FileJson className="w-5 h-5" />
-            업로드
+            <span className="tbm-step-number">2</span>
+            <span className="tbm-btn-copy"><small>JSON 붙여넣기</small>내용 불러오기</span>
+            <FileJson className="tbm-action-icon" />
           </button>
           <button
             onClick={copyPrompt}
             disabled={!promptText}
-            className={`tbm-btn ${copied ? 'tbm-btn-dark' : 'tbm-btn-primary'}`}
+            className={`tbm-btn ${copied ? 'tbm-btn-done' : 'tbm-btn-secondary'}`}
           >
-            {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-            {copied ? '복사완료' : '복사'}
+            <span className="tbm-step-number">3</span>
+            <span className="tbm-btn-copy"><small>{promptText ? '수정이 끝나면' : '불러온 다음'}</small>{copied ? '복사 완료' : '프롬프트 복사'}</span>
+            {copied ? <Check className="tbm-action-icon" /> : <Copy className="tbm-action-icon" />}
           </button>
           <a href={FLOW_URL} target="_blank" rel="noreferrer" className="tbm-btn tbm-btn-dark">
-            <Film className="w-5 h-5" />
-            영상제작
+            <span className="tbm-step-number">4</span>
+            <span className="tbm-btn-copy"><small>마지막</small>영상 만들기</span>
+            <ArrowRight className="tbm-action-icon" />
           </a>
+          </div>
         </div>
         {copied && (
-          <p className="tbm-copied-banner tbm-wrap" style={{ marginTop: 10 }}>이제 대사 수정을 마친 뒤 붙여넣을 곳에 붙여넣으세요.</p>
+          <p className="tbm-copied-banner tbm-wrap">복사했어요! 이제 4번 ‘영상 만들기’를 눌러 붙여넣으세요.</p>
         )}
       </div>
 
       <main className="tbm-main tbm-wrap">
-        <h2 className="tbm-section-title">🗣️ 대사 수정하기</h2>
+        <div className="tbm-section-head">
+          <span className="tbm-section-icon" aria-hidden="true">가</span>
+          <div>
+            <span className="tbm-kicker">내 영상의 목소리</span>
+            <h2 className="tbm-section-title">대사를 고쳐보세요</h2>
+          </div>
+        </div>
 
         {dialogues.length === 0 ? (
           <div className="tbm-empty">
-            <p>{parseError ? 'JSON 형식이 올바르지 않아요.' : '위의 JSON 업로드 버튼을 눌러 내용을 불러와 주세요.'}</p>
+            <span className="tbm-empty-icon"><FileJson /></span>
+            <strong>{parseError ? '내용을 다시 확인해 주세요' : '아직 불러온 내용이 없어요'}</strong>
+            <p>{parseError ? 'JSON 형식이 올바르지 않습니다.' : '위의 2번 ‘내용 불러오기’를 누르면<br />여기에 대사가 나타납니다.'}</p>
+            {!parseError && (
+              <button
+                onClick={() => { setUploadOpen(true); setPasteError(''); setPasteInput(''); }}
+                className="tbm-empty-cta"
+              >
+                지금 내용 불러오기 <ArrowRight />
+              </button>
+            )}
           </div>
         ) : (
           dialogues.map((d) => (
@@ -236,7 +287,7 @@ export default function Step1MobileClient() {
                 <FileJson className="w-5 h-5" style={{ color: 'var(--tbm-primary)' }} />
                 JSON 업로드
               </span>
-              <button className="tbm-modal-close" onClick={() => setUploadOpen(false)}>
+              <button aria-label="업로드 창 닫기" className="tbm-modal-close" onClick={() => setUploadOpen(false)}>
                 <X className="w-5 h-5" />
               </button>
             </div>
