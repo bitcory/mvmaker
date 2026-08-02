@@ -238,7 +238,7 @@ export default function Step1MobileClient() {
           <div className="tbm-empty">
             <span className="tbm-empty-icon"><FileJson /></span>
             <strong>{parseError ? '내용을 다시 확인해 주세요' : '아직 불러온 내용이 없어요'}</strong>
-            <p>{parseError ? 'JSON 형식이 올바르지 않습니다.' : '위의 2번 ‘내용 불러오기’를 누르면<br />여기에 대사가 나타납니다.'}</p>
+            <p>{parseError ? 'JSON 형식이 올바르지 않습니다.' : <>위의 2번 ‘내용 불러오기’를 누르면<br />여기에 대사가 나타납니다.</>}</p>
             {!parseError && (
               <button
                 onClick={() => { setUploadOpen(true); setPasteError(''); setPasteInput(''); }}
