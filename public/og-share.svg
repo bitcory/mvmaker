@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <clipPath id="photo"><rect x="545" y="0" width="655" height="630"/></clipPath>
+    <linearGradient id="fade" x1="0" x2="1">
+      <stop offset="0" stop-color="#173150"/>
+      <stop offset="1" stop-color="#173150" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#173150"/>
+  <image href="images/ai-video-guide-hero-social.jpg" x="545" y="0" width="655" height="630" preserveAspectRatio="xMidYMid slice" clip-path="url(#photo)"/>
+  <rect x="505" width="240" height="630" fill="url(#fade)"/>
+
+  <rect x="72" y="58" width="58" height="58" rx="17" fill="#df4f25"/>
+  <path d="M88 78h25v20H88zM88 78l5-8h25l-5 8M94 78l5-8M106 78l5-8" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="119" cy="69" r="7" fill="#ffcf67"/>
+  <text x="150" y="101" fill="#fff" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="35" font-weight="800">한컷 AI</text>
+
+  <text x="72" y="228" fill="#fff" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="70" font-weight="900" letter-spacing="-3">대사만 고치면</text>
+  <text x="72" y="320" fill="#ffb69d" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="70" font-weight="900" letter-spacing="-3">영상 준비 끝!</text>
+  <text x="76" y="395" fill="#dbe7ef" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="28" font-weight="600">누구나 쉽게 시작하는 AI 영상 만들기</text>
+
+  <rect x="72" y="475" width="300" height="62" rx="31" fill="#fff" fill-opacity="0.12" stroke="#fff" stroke-opacity="0.22"/>
+  <text x="105" y="516" fill="#fff" font-family="Apple SD Gothic Neo, Malgun Gothic, sans-serif" font-size="24" font-weight="700">쉬운 4단계 · 약 5분</text>
+</svg>
